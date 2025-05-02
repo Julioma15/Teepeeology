@@ -1,0 +1,78 @@
+/*Fondo del cuerpo*/
+.fondo_cuerpo1{
+ 
+    background-color:#221811;  
+}
+.fondo_cuerpo2{
+ 
+    background-color:#E6DED6;  
+}
+
+/* Fondo de la barra de navegación */
+.navbar {
+    background-color: #FFFFFF; /* Cambia el color de fondo aquí */
+    color: #000000; /* Cambia el color del texto aquí */
+}
+
+/*Titulo de la página*/
+.tituloCon1{
+
+            padding: 48px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            text-align: center;
+            color:#FFFFFF;
+
+}
+.tituloCon2{
+
+            padding: 48px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            text-align: center;
+            color:#000000;
+
+}
+/*Texto de subtitulos*/
+.subtituloCon1{
+
+            padding: 80px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            text-align: center;
+            color:#000000;
+
+}
+
+/*desastre para arreglar una imagen que no se adapta a la pantalla*/
+/* Asegúrate de que el contenedor ocupe todo el ancho */
+.container-fluid {
+    padding: 0 !important; /* Elimina cualquier padding predeterminado */
+    margin: 0 !important; /* Elimina cualquier margen predeterminado */
+    width: 100vw; /* Asegura que el contenedor ocupe todo el ancho de la ventana */
+}
+.imagen_separadora img {
+    width: 100vw; /* Fuerza que la imagen ocupe todo el ancho de la ventana */
+    height: auto; /* Mantiene la proporción de la imagen */
+    display: block; /* Elimina espacios blancos alrededor de la imagen */
+    margin: 0;
+    padding: 0;
+}
+
+/*Texto de los parrafos*/
+/* Ajustar el ancho del contenedor */
+.textoCon1 .container {
+    max-width: 1200px; /* Cambia este valor según el ancho deseado */
+    margin: 0 auto; /* Centra el contenedor horizontalmente */
+    padding: 20px; /* Agrega espacio interno */
+    text-align: center;
+    color:#000000;
+
+}
+
+/* Cambiar el color de fondo del contenedor */
+.bg-custom {
+    background-color: #f5f5f5; /* Cambia este color al que prefieras */
+    padding: 20px; /* Agrega un poco de espacio interno */
+    border-radius: 10px; /* Opcional: bordes redondeados */
+}
