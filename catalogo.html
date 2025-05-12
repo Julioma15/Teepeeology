@@ -8,41 +8,72 @@
     <link rel="icon" type="image/png"href="/Assets/Iconos/teepeZahara.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const userSection = document.getElementById('user-section');
+            const username = localStorage.getItem('username'); // Obtén el nombre del usuario
 
+            if (username) {
+                // Si el usuario ha iniciado sesión, muestra su nombre
+                userSection.innerHTML = `
+                    <span class="navbar-text">Hola, ${username}</span>
+                    <button class="btn btn-outline-danger ms-2" id="logout-btn">Cerrar Sesión</button>
+                `;
+
+                // Agrega funcionalidad al botón de cerrar sesión
+                document.getElementById('logout-btn').addEventListener('click', () => {
+                    localStorage.removeItem('username'); // Elimina el nombre del usuario
+                    localStorage.removeItem('token'); // Elimina el token si lo usas
+                    window.location.reload(); // Recarga la página
+                });
+            }
+        });
+    </script>
 </head>
 <body class="fondo_cuerpo2">
-     <!--Navbar-->
-     <nav class="navbar">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-              <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/index.html">INICIO</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/index.html">SOBRE NOSOTROS</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/catalogo.html">CATALOGO</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/index.html">CONDICIONES</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/complementos.html">COMPLEMENTOS</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/index.html">CONTACTOS</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/index.html">CARRITO</a>
-                  </li>
+     <!-- Navbar -->
+     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <!-- Logo -->
+            <a class="navbar-brand" href="/frontend/index.html">
+                <img src="/Assets/Iconos/teepeZahara.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+                Teepeeology
+            </a>
+            <!-- Toggler for mobile view -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/frontend/index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/frontend/catalogo.html">Catalogo</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Productos
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#teepee_luum">Teepee Luum</a></li>
+                            <li><a class="dropdown-item" href="#teepee_zahara">Teepee Zahara</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/frontend/index.html#contacto">Contacto</a>
+                    </li>
                 </ul>
-              </div>
+                <!-- Botón o menú del usuario -->
+                <div id="user-section" class="d-flex align-items-center">
+                    <!-- Si el usuario no ha iniciado sesión -->
+                    <a href="/frontend/login.html" class="btn btn-primary btn-sm px-4">Iniciar Sesión</a>
+                </div>
             </div>
-          </nav>
+        </div>
     </nav>
+
     <!--Titulo-->
     <nav class="tituloCon2">
         <h2>CATALOGO</h2>
@@ -53,9 +84,10 @@
             <img src="/Assets/Separadores/separador.png" alt="Logo" class="img-fluid">
         </div>
     </div>
-
-    <nav class="subtituloCon1">
-        <h3>Teepee luum</h3>
+<!--inicio seccion Teepee Luum-->
+    <nav id="teepee_luum" class="subtituloCon1">
+        <h2>Teepee luum</h2>
+        <img src="/Assets/Separadores/bola_grande.png" alt="Decoración" class="decoracion-bola">
     </nav>
     <!--Parrafo de texto-->
     <div class="textoCon1 bg-custom">
@@ -77,12 +109,106 @@
           </div>
       </div>
     </div>
+    <br>
+    <br>
 
     <!--Imagen-->
     <div class="container text-center">
-        <img src="/Assets/Imagenes de Teepes/IMG_4463 2(1).png" alt="Logo" class="img-fluid">
+        <img src="/Assets/Imagenes de Teepes/IMG_4463 2(1).png" alt="Logo" class="img-luum">
     </div>
 
+    <!-- Cuadrícula de imágenes paquetes - Teepee Luum -->
+    <div class="container text-center mt-5">
+        <div class="row">
+            <div class="col-12 col-md-3 mb-3">
+                <img src="/Assets/Iconos/paquete_noa.svg" alt="Paquete Noa" class="img-fluid rounded paquete" data-id="68224b4dc6f4421362d40ae4">
+            </div>
+            <div class="col-12 col-md-3 mb-3">
+                <img src="/Assets/Iconos/paquete_keira.svg" alt="Paquete Kaira" class="img-fluid rounded paquete" data-id="68224b60c6f4421362d40ae6">
+            </div>
+            <div class="col-12 col-md-3 mb-3">
+                <img src="/Assets/Iconos/paquete_seli.svg" alt="Paquete Seli" class="img-fluid rounded paquete" data-id="68224b70c6f4421362d40ae8">
+            </div>
+            <div class="col-12 col-md-3 mb-3">
+                <img src="/Assets/Iconos/paquete_zazil.svg" alt="Paquete Zazil" class="img-fluid rounded paquete" data-id="68224b8fc6f4421362d40aea">
+            </div>
+        </div>
+    </div>
+<!--fin seccion Teepee Luum-->
+    <br>
+    <br>
+<!--inicio seccion Teepee Zahara-->
+    <nav id="teepee_zahara" class="subtituloCon1">
+        <h2>Teepee Zahara</h2>
+    </nav>
+    <!--Parrafo de texto-->
+    <div class="textoCon1 bg-custom">
+      <div class="container text-center">
+          <div class="parrafo_texto">
+              <p>
+                Base hexagonal | Diseño elegante y envolvente
+              </p>
+              <p>
+                El Teepee Zahra, con su base hexagonal, ofrece una forma envolvente y 
+              </p>
+              <p>
+                decorativa, ideal para eventos especiales y temáticas soñadoras. Su diseño 
+              </p>
+              <p>
+                aporta encanto y una experiencia visual única.
+              </p>
 
+          </div>
+      </div>
+    </div>
+    <br>
+    <br>
+        <!--Imagen-->
+    <div class="container text-center">
+        <img src="/Assets/Imagenes de Teepes/casa_random.jpeg" alt="Teepee Zahara" class="img-zahara">
+    </div>
+
+    <!-- Cuadrícula de imágenes paquetes - Teepee Zahara -->
+    <div class="container text-center mt-5">
+        <div class="row">
+            <div class="col-12 col-md-3 mb-3">
+                <img src="/Assets/Iconos/paquete_noa2.svg" alt="Paquete Noa2" class="img-fluid rounded paquete" data-id="68224ba9c6f4421362d40aec">
+            </div>
+            <div class="col-12 col-md-3 mb-3">
+                <img src="/Assets/Iconos/paquete_sael.svg" alt="Paquete Sael" class="img-fluid rounded paquete" data-id="68224bb9c6f4421362d40aee">
+            </div>
+            <div class="col-12 col-md-3 mb-3">
+                <img src="/Assets/Iconos/paquete_kuna2.svg" alt="Paquete Kuna" class="img-fluid rounded paquete" data-id="68224bc8c6f4421362d40af0">
+            </div>
+            <div class="col-12 col-md-3 mb-3">
+                <img src="/Assets/Iconos/paquete_kine.svg" alt="Paquete Kine" class="img-fluid rounded paquete" data-id="68224bddc6f4421362d40af2">
+            </div>
+        </div>
+    </div>
+<!--fin seccion Teepee Zahara-->
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container text-center">
+            <!-- Enlaces de navegación -->
+            <div class="footer-links">
+                <a href="/frontend/index.html">Inicio</a>
+                <a href="#quienes-somos">Sobre Nosotros</a>
+                <a href="/frontend/catalogo.html">Catalogo</a>
+                <a href="#contacto">Contacto</a>
+            </div>
+            <!-- Íconos de redes sociales -->
+            <div class="footer-icons">
+                <a href="https://wa.me/1234567890" target="_blank">
+                    <img src="/Assets/Iconos/miniwhatsap.png" alt="WhatsApp" class="footer-icon">
+                </a>
+                <a href="https://instagram.com/tu_cuenta" target="_blank">
+                    <img src="/Assets/Iconos/miniInstagram.png" alt="Instagram" class="footer-icon">
+                </a>
+            </div>
+        </div>
+    </footer>
+    
+<script src="/frontend/scripts/catalogo.js"></script>
 </body>
 </html>

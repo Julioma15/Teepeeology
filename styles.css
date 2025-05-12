@@ -14,6 +14,31 @@
     color: #000000; /* Cambia el color del texto aquí */
 }
 
+/* Centrar los enlaces del navbar */
+.navbar-nav {
+    display: flex; /* Asegura que los elementos estén en línea */
+    justify-content: center; /* Centra los enlaces horizontalmente */
+    width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
+    text-align: center; /* Centra el texto dentro de los enlaces */
+}
+
+/* Estilo para el texto del navbar */
+.navbar .nav-link {
+    color: #000000; /* Color del texto */
+    font-size: 16px; /* Tamaño de fuente */
+    margin: 0 10px; /* Espaciado entre los enlaces */
+}
+
+.navbar .nav-link:hover {
+    color: #555555; /* Color al pasar el mouse */
+}
+
+/* Espaciador invisible en el navbar */
+.invisible {
+    width: 150px; /* Ajusta este valor según sea necesario */
+    height: 1px; /* Altura mínima para que no sea visible */
+}
+
 /*Titulo de la página*/
 .tituloCon1{
 
@@ -34,14 +59,20 @@
 
 }
 /*Texto de subtitulos*/
-.subtituloCon1{
-
-            padding: 80px;
-            margin-bottom: 10px;
-            border-radius: 10px;
-            text-align: center;
-            color:#000000;
-
+.subtituloCon1 {
+    position: relative; /* Necesario para posicionar la bola */
+    padding: 80px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    text-align: center;
+    color: #000000;
+    font-size: 3.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+ 
 }
 
 /*desastre para arreglar una imagen que no se adapta a la pantalla*/
@@ -55,24 +86,319 @@
     width: 100vw; /* Fuerza que la imagen ocupe todo el ancho de la ventana */
     height: auto; /* Mantiene la proporción de la imagen */
     display: block; /* Elimina espacios blancos alrededor de la imagen */
-    margin: 0;
-    padding: 0;
+    margin: 0; /* Elimina márgenes internos */
+    padding: 0; /* Elimina padding interno */
 }
 
 /*Texto de los parrafos*/
-/* Ajustar el ancho del contenedor */
-.textoCon1 .container {
-    max-width: 1200px; /* Cambia este valor según el ancho deseado */
-    margin: 0 auto; /* Centra el contenedor horizontalmente */
-    padding: 20px; /* Agrega espacio interno */
-    text-align: center;
-    color:#000000;
-
+/* Ajustar el contenedor del párrafo */
+.textoCon1 {
+    margin: 0 auto; /* Centra el contenedor */
+    padding: 0; /* Elimina padding adicional */
+    background-color: transparent; /* Asegúrate de que no tenga fondo */
 }
 
 /* Cambiar el color de fondo del contenedor */
 .bg-custom {
-    background-color: #f5f5f5; /* Cambia este color al que prefieras */
-    padding: 20px; /* Agrega un poco de espacio interno */
-    border-radius: 10px; /* Opcional: bordes redondeados */
+    background-color: #E6DED6; /* Fondo beige */
+    padding: 20px; /* Espaciado interno */
+
+}
+
+/* Clase para separar los contenedores */
+.separador {
+    margin-top: 60px; /* Incrementa el espacio superior */
+    margin-bottom: 60px; /* Incrementa el espacio inferior */
+}
+
+/* Sección "¿Quiénes somos?" */
+.quienes-somos {
+    background-color: #E6DED6; /* Fondo beige */
+    padding: 60px 20px; /* Espaciado interno */
+    margin-top: 60px; /* Separación superior */
+    margin-bottom: 60px; /* Separación inferior */
+    border-radius: 10px; /* Bordes redondeados */
+}
+
+.titulo-quienes {
+    font-size: 2.5rem; /* Tamaño del título */
+    font-weight: bold;
+    color: #000000; /* Color negro */
+    margin-bottom: 200px;
+}
+
+.texto-quienes {
+    font-size: 1.2rem; /* Tamaño del texto */
+    color: #000000; /* Color negro */
+    line-height: 1.8; /* Espaciado entre líneas */
+    text-align: justify; /* Justificar texto */
+}
+
+.quienes-somos img {
+    border-radius: 10px; /* Bordes redondeados para la imagen */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para la imagen */
+}
+
+/* Sección de contacto */
+.contacto {
+    background-color: #E6DED6; /* Fondo beige */
+    padding: 40px 20px; /* Espaciado interno */
+    margin-top: 40px; /* Separación superior */
+    border-radius: 10px; /* Bordes redondeados */
+    text-align: center; /* Centrar contenido */
+}
+
+.icono-contacto img {
+    margin-top: 90px;
+    margin-left: 80px;
+    margin-right: 80px;
+    margin-bottom: 90px;
+    width: 283px; /* Tamaño del ícono */
+    height: 202px; /* Tamaño del ícono */
+    transition: transform 0.3s ease; /* Animación al pasar el mouse */
+}
+
+.icono-contacto img:hover {
+    transform: scale(1.2); /* Efecto de zoom al pasar el mouse */
+}
+
+/* Footer */
+.footer {
+    background-color: #221811; /* Fondo oscuro */
+    color: #FFFFFF; /* Texto blanco */
+    padding: 20px 0; /* Espaciado interno */
+    margin-top: 40px; /* Separación superior */
+}
+
+.footer-links {
+    margin-bottom: 10px; /* Espaciado entre los enlaces y los íconos */
+}
+
+.footer-links a {
+    color: #FFFFFF; /* Color de los enlaces */
+    text-decoration: none; /* Sin subrayado */
+    margin: 0 15px; /* Espaciado entre los enlaces */
+    font-size: 14px; /* Tamaño de fuente */
+}
+
+.footer-links a:hover {
+    text-decoration: underline; /* Subrayado al pasar el mouse */
+}
+
+.footer-icons {
+    margin-top: 10px; /* Espaciado superior para los íconos */
+}
+
+.footer-icon {
+    width: 30px; /* Tamaño de los íconos */
+    height: 30px; /* Tamaño de los íconos */
+    margin: 0 10px; /* Espaciado entre los íconos */
+    vertical-align: middle; /* Alineación vertical */
+}
+
+/*Catalogo*/
+.parrafo_texto{
+    font-size: 1.2rem; /* Tamaño del texto */
+    color:#000000; /* Color */
+    background-color: #E6DED6;
+}
+
+/* Estilo para la bola decorativa */
+.decoracion-bola {
+    position: absolute; /* Posiciona la bola de forma absoluta */
+    right: 10%; /* Ajusta la posición horizontal */
+    top: 50%; /* Ajusta la posición vertical */
+    transform: translateY(-50%); /* Centra verticalmente */
+    width: 110px; /* Ajusta el tamaño de la bola */
+    height: auto; /* Mantén la proporción de la imagen */
+    z-index: -1; /* Envía la bola detrás del texto si es necesario */
+    opacity: 0.8; /* Opcional: hazla un poco transparente */
+}
+
+/* Cuadrícula de imágenes */
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
+    grid-template-rows: 1fr 1fr; /* Dos filas iguales */
+    gap: 10px; /* Espaciado entre las imágenes */
+    width: 60%; /* Ajusta el ancho del contenedor */
+    margin: 0 auto; /* Centra el contenedor horizontalmente */
+    background-color: #FFFFFF; /* Fondo blanco para las líneas */
+    padding: 10px; /* Espaciado interno para las líneas blancas */
+    border-radius: 10px; /* Bordes redondeados */
+}
+
+/* Elementos de la cuadrícula */
+.grid-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #E6DED6; /* Fondo beige para las imágenes */
+    border: 2px solid #FFFFFF; /* Líneas blancas entre las imágenes */
+    border-radius: 10px; /* Bordes redondeados */
+    overflow: hidden; /* Asegura que las imágenes no se salgan del contenedor */
+}
+
+/* Imágenes dentro de la cuadrícula */
+.grid-item img {
+    width: 100%; /* Asegura que las imágenes ocupen todo el espacio disponible */
+    height: auto; /* Mantiene la proporción de las imágenes */
+    object-fit: cover; /* Ajusta la imagen para que se vea bien dentro del contenedor */
+    border-radius: 8px; /* Bordes redondeados para las imágenes */
+}
+
+/* Estilo para la imagen de Teepee Zahara */
+.img-zahara {
+    max-width: 30%; /* Limita el ancho máximo al 80% del contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+    margin: 20px auto; /* Centra la imagen y agrega espacio alrededor */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para un efecto elegante */
+}
+
+.img-luum {
+    max-width: 30%; /* Limita el ancho máximo al 80% del contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+    margin: 20px auto; /* Centra la imagen y agrega espacio alrededor */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para un efecto elegante */
+}
+
+
+
+/*login y sign in*/
+.fondo_login {
+    width: 400px;
+    height: 450px;
+    background-color: brown;
+    padding-top: 20px;
+    margin: 50px auto;
+
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    box-shadow: -10px 10px 15px gray; /* Corrección de la sintaxis */
+}
+
+.fondo_signin {
+    width: 400px;
+    height: 520px;
+    background-color: brown;
+    padding-top: 20px;
+    margin: 50px auto;
+
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    box-shadow: -10px 10px 15px gray; /* Corrección de la sintaxis */
+}
+
+
+.titulo_login{
+    color: white;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    
+
+}
+
+.input_login{
+    font-size: 16px;
+    padding: 8px;
+    display: flex;
+    margin: 10px auto;
+}
+
+.label_login{
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    padding: 8px;
+    display: block;
+    margin: 15px;
+}
+
+.boton_login {
+    width: 180px; /* Un poco más ancho */
+    margin: 20px auto; /* Centrado horizontalmente */
+    font-size: 18px; /* Tamaño de fuente ajustado */
+    display: block;
+    background-color: #4CAF50; /* Color verde atractivo */
+    color: white; /* Texto blanco */
+    border: none; /* Sin bordes */
+    border-radius: 8px; /* Bordes redondeados */
+    padding: 10px 15px; /* Espaciado interno */
+    cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Sombra */
+    transition: all 0.3s ease; /* Transición suave */
+}
+
+.boton_login:hover {
+    background-color: #45a049; /* Color verde más oscuro al pasar el mouse */
+    transform: translateY(-2px); /* Efecto de elevación */
+}
+
+.texto_login {
+    text-align: center; /* Centra el texto horizontalmente */
+    margin-top: 20px; /* Ajusta el margen superior */
+    font-size: 14px; /* Tamaño de fuente ajustado */
+}
+.texto_login a {
+    color: white; /* Cambia el color del enlace */
+    text-decoration: none; /* Elimina el subrayado */
+}
+.texto_login a:hover {
+    color: #ccc; /* Cambia el color al pasar el mouse (opcional) */
+}
+
+/*Calendario*/
+        /* Styles for the calendar */
+        :root {
+            --fc-today-bg-color: rgba(255, 220, 40, 0.15);
+            --fc-event-bg-color: #3788d8;
+            --fc-event-border-color: #3788d8;
+        }
+        
+        #calendar {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        
+        .fc-toolbar-title {
+            font-size: 1.75em;
+            color: #2c3e50;
+        }
+
+/* User section */
+#user-section .btn {
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-radius: 20px;
+    background-color: #221811; /* Color café */
+    color: #FFFFFF; /* Texto blanco */
+    border: none; /* Sin borde */
+}
+
+#user-section .btn:hover {
+    background-color: #A0522D; /* Café más claro al pasar el mouse */
+    color: #FFFFFF; /* Mantén el texto blanco */
+}
+
+/* Estilo para el menú desplegable */
+#user-section .dropdown-menu {
+    background-color: #F5F5DC; /* Fondo beige */
+    border: 1px solid #8B4513; /* Borde café */
+    text-align: center;
+}
+
+#user-section .dropdown-item {
+    font-size: 0.85rem;
+    color: #8B4513; /* Texto café */
+}
+
+#user-section .dropdown-item:hover {
+    background-color: #A0522D; /* Fondo café claro al pasar el mouse */
+    color: #FFFFFF; /* Texto blanco */
 }
