@@ -1,368 +1,91 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Calendario Avanzado</title>
-    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.3/morph/bootstrap.rtl.min.css" integrity="sha512-36xw1AJG6E0yKDFXi1ZCuYvAjyH67M2nhVOmvTh3Y+zRm4TUHrmsh+Xz/jg+7qJPZoH3zf6PhMnK9hSRg2pIcw==" crossorigin="anonymous" referrerpolicy="no-referrer" important />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
-    <style>
-        :root {
-            --fc-today-bg-color: rgba(255, 220, 40, 0.15);
-            --fc-event-bg-color: #3788d8;
-            --fc-event-border-color: #3788d8;
-        }
-        
-        #calendar {
-            max-width: 1100px;
-            margin: 30px auto;
-            padding: 20px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            border-radius: 10px;
-        }
-        
-        .fc-toolbar-title {
-            font-size: 1.75em;
-            color: #2c3e50;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- Bootstrap & FullCalendar -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet" />
+  
+  <!-- Archivos propios -->
+  <link rel="stylesheet" href="/frontend/calendario.css" />
+  <title>Calendario de Reservaciones</title>
+
+  <style>
+    /* Estilos para el botón Confirmar */
+    .confirm-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+  </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1 style="text-align: center; color: #2c3e50;">Calendario</h1>
-        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addEventModal">Agregar evento</button>
-        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteEventModal">Eliminar evento</button>
-        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editEventModal">Modificar evento</button>
+  <!-- Título -->
+  <div class="container position-relative">
+    <br>
+    <h1 class="text-center">Calendario de Reservaciones</h1>
+    <br>
+    <h4 class="text-center">Consulta las fechas de los eventos reservados</h4>
 
-        <!-- Modal para Agregar Evento -->
-        <div class="modal fade" id="addEventModal" tabindex="-1" aria-labelledby="addEventModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h1 class="modal-title fs-5" id="addEventModalLabel">Agregar Evento</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="position: absolute; top: 10px; right: 10px;"></button>
-                </div>
-                <div class="modal-body">
-                <form id="addEventForm">
+    <!-- Botón Confirmar en la esquina superior derecha -->
+    <button type="button" class="btn btn-success confirm-button" onclick="window.location.href='index.html';">
+      Confirmar
+    </button>
+  </div>
+
+  <!-- Botón para abrir el modal -->
+  <div class="container text-center">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#eventModal">
+        Ver Detalles de Reservación
+    </button>
+  </div>
+
+  <!-- Calendario -->
+  <div class="container">
+    <div id="calendar"></div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="eventModalLabel">Agregar Reservación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+                <form id="eventForm">
                     <div class="mb-3">
-                    <label for="add-title" class="col-form-label">Título:</label>
-                    <input type="text" class="form-control" id="add-title">
+                        <label for="eventName" class="form-label">Nombre del Cliente</label>
+                        <input type="text" class="form-control" id="eventName" placeholder="Ingresa el nombre del cliente" required>
                     </div>
                     <div class="mb-3">
-                    <label for="add-start" class="col-form-label">Fecha de inicio:</label>
-                    <input type="date" class="form-control" id="add-start">
+                        <label for="eventStart" class="form-label">Fecha de Inicio</label>
+                        <input type="date" class="form-control" id="eventStart" required>
                     </div>
                     <div class="mb-3">
-                    <label for="add-end" class="col-form-label">Fecha de fin:</label>
-                    <input type="date" class="form-control" id="add-end">
+                        <label for="eventEnd" class="form-label">Fecha de Fin</label>
+                        <input type="date" class="form-control" id="eventEnd" required>
                     </div>
                 </form>
-                </div>
-                <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-success" id="saveAddEvent">Guardar</button>
-                    </div>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="saveEventButton">Guardar</button>
             </div>
         </div>
-
-        <!-- Modal para Eliminar Evento -->
-        <div class="modal fade" id="deleteEventModal" tabindex="-1" aria-labelledby="deleteEventModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="deleteEventModalLabel">Eliminar Evento</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="position: absolute; top: 10px; right: 10px;"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="deleteEventForm">
-                            <div class="mb-3">
-                                <label for="delete-id" class="col-form-label">ID del Evento:</label>
-                                <input type="text" class="form-control" id="delete-id" placeholder="Ingresa el ID del evento">
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-danger" id="confirmDeleteEvent">Eliminar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal para Modificar Evento -->
-        <div class="modal fade" id="editEventModal" tabindex="-1" aria-labelledby="editEventModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="editEventModalLabel">Modificar Evento</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="position: absolute; top: 10px; right: 10px;"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="editEventForm">
-                            <div class="mb-3">
-                                <label for="edit-id" class="col-form-label">ID del Evento:</label>
-                                <input type="text" class="form-control" id="edit-id">
-                            </div>
-                            <div class="mb-3">
-                                <label for="edit-title" class="col-form-label">Título:</label>
-                                <input type="text" class="form-control" id="edit-title">
-                            </div>
-                            <div class="mb-3">
-                                <label for="edit-start" class="col-form-label">Fecha de inicio:</label>
-                                <input type="date" class="form-control" id="edit-start">
-                            </div>
-                            <div class="mb-3">
-                                <label for="edit-end" class="col-form-label">Fecha de fin:</label>
-                                <input type="date" class="form-control" id="edit-end">
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-warning" id="saveEditEvent">Guardar Cambios</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal para SOLO VISUALIZAR Evento -->
-        <div class="modal fade" id="visualizeEventModal" tabindex="-1" aria-labelledby="visualizeEventModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="visualizeEventModalLabel">Información del Evento</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="position: absolute; top: 10px; right: 10px;"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="visualizeEventForm">
-                            <div class="mb-3 d-flex align-items-center">
-                                <label for="visualize-id" class="col-form-label me-2">ID del Evento:</label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id="visualize-id" readonly>
-                                    <button class="btn btn-outline-secondary" type="button" id="copyIdButton">
-                                        <i class="bi bi-clipboard"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="visualize-title" class="col-form-label">Título:</label>
-                                <input type="text" class="form-control" id="visualize-title" readonly>
-                            </div>
-                            <div class="mb-3">
-                                <label for="visualize-start" class="col-form-label">Fecha de inicio:</label>
-                                <input type="date" class="form-control" id="visualize-start" readonly>
-                            </div>
-                            <div class="mb-3">
-                                <label for="visualize-end" class="col-form-label">Fecha de fin:</label>
-                                <input type="date" class="form-control" id="visualize-end" readonly>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    
     </div>
-    
+  </div>
 
-    <div id="calendar"></div>
-
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/locales/es.min.js"></script>
-
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const calendarEl = document.getElementById('calendar');
-            const calendar = new FullCalendar.Calendar(calendarEl, {
-                locale: 'es',
-                headerToolbar: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
-                },
-                initialView: 'dayGridMonth',
-                navLinks: true,
-                editable: true,
-                timeZone: 'local', // zona horaria local
-                nowIndicator: true,
-                events: async function(fetchInfo, successCallback, failureCallback) {
-                    try {
-                        const response = await fetch('http://localhost:8000/api/eventos');
-                        if (!response.ok) {
-                            throw new Error('Error al obtener los eventos');
-                        }
-
-                        const data = await response.json();
-                        const events = data.eventos;
-
-                        const formattedEvents = events.map(event => ({
-                            id: event._id, // Mapea _id de MongoDB a id
-                            title: event.title,
-                            start: event.start,
-                            end: event.end
-                        }));
-
-                        successCallback(formattedEvents);
-                    } catch (error) {
-                        console.error('Error al cargar los eventos:', error);
-                        failureCallback(error);
-                    }
-                },
-                dayMaxEvents: true,
-                nowIndicator: true,
-                firstDay: 1,
-                businessHours: {
-                    daysOfWeek: [1, 2, 3, 4, 5],
-                    startTime: '09:00',
-                    endTime: '18:00'
-                },
-                // Manejar clic en un evento
-                eventClick: function(info) {
-                    openModal({
-                        id: info.event.id,
-                        title: info.event.title,
-                        start: info.event.start,
-                        end: info.event.end,
-                        color: info.event.backgroundColor,
-                        description: info.event.extendedProps.description
-                    });
-                },
-                // Manejar clic en una fecha
-                dateClick: function(info) {
-                    openModal({
-                        start: info.dateStr,
-                        allDay: info.allDay
-                    });
-                },
-            });
-            
-
-            calendar.render();
-        });
-
-        function openModal(eventData = {}) {
-            if (eventData.id) {
-                // Si hay un ID, se trata de visualizar un evento
-                const visualizeModal = new bootstrap.Modal(document.getElementById('visualizeEventModal'));
-                document.getElementById('visualize-id').value = eventData.id;
-                document.getElementById('visualize-title').value = eventData.title || '';
-                document.getElementById('visualize-start').value = eventData.start ? eventData.start.toISOString().slice(0, 10) : '';
-                document.getElementById('visualize-end').value = eventData.end ? eventData.end.toISOString().slice(0, 10) : '';
-
-                visualizeModal.show();
-            } else {
-                // Si no hay ID, se trata de agregar un nuevo evento
-                const addModal = new bootstrap.Modal(document.getElementById('addEventModal'));
-                document.getElementById('add-start').value = eventData.start || '';
-                document.getElementById('add-end').value = eventData.end || '';
-                addModal.show();
-            }
-        }
-    </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Botón para guardar un nuevo evento
-            document.getElementById('saveAddEvent').addEventListener('click', async () => {
-                const title = document.getElementById('add-title').value;
-                const start = document.getElementById('add-start').value; // Enviar como YYYY-MM-DD
-                let end = document.getElementById('add-end').value; // Enviar como YYYY-MM-DD
-
-                if (!title || !start || !end) {
-                    alert('Por favor, completa todos los campos.');
-                    return;
-                }
-
-                // Suma un día a la fecha de fin
-                const endDate = new Date(end);
-                endDate.setDate(endDate.getDate() + 1);
-                end = endDate.toISOString().split('T')[0]; // Convierte de nuevo a YYYY-MM-DD
-
-                try {
-                    const response = await fetch('http://localhost:8000/api/eventos', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({ title, start, end }),
-                    });
-
-                    if (response.ok) {
-                        const data = await response.json();
-                        alert('Evento agregado exitosamente');
-                        console.log(data);
-                        location.reload(); // Recarga el calendario
-                    } else {
-                        const error = await response.json();
-                        alert(`Error: ${error.message}`);
-                    }
-                } catch (err) {
-                    console.error('Error al agregar el evento:', err);
-                    alert('Hubo un error al conectar con el servidor.');
-                }
-            });
-
-            // Botón para eliminar un evento
-            document.getElementById('confirmDeleteEvent').addEventListener('click', async function () {
-                const id = document.getElementById('delete-id').value;
-
-                console.log('ID a eliminar:', id);
-                if (!id) {
-                    alert('Por favor, ingresa el ID del evento a eliminar.');
-                    return;
-                }
-
-                try {
-                    const response = await fetch(`http://localhost:8000/api/eventos/${id}`, {
-                        method: 'DELETE',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                    });
-
-                    if (response.ok) {
-                        alert('Evento eliminado exitosamente');
-                        location.reload(); // Recarga el calendario para reflejar los cambios
-                    } else {
-                        const error = await response.json();
-                        alert(`Error: ${error.message}`); // Muestra el mensaje de error del backend
-                    }
-                } catch (err) {
-                    console.error('Error al eliminar el evento:', err);
-                    alert('Hubo un error al conectar con el servidor.');
-                }
-            });
-
-            // Botón para guardar cambios en un evento
-            document.getElementById('saveEditEvent').addEventListener('click', function () {
-                const id = document.getElementById('edit-id').value;
-                const title = document.getElementById('edit-title').value;
-                const start = document.getElementById('edit-start').value;
-                const end = document.getElementById('edit-end').value;
-
-                console.log('Modificar Evento:', { id, title, start, end });
-                // Aquí realizar solicitud PUT al backend para modificar el evento
-            });
-
-            // Botón para copiar el ID del evento
-            document.getElementById('copyIdButton').addEventListener('click', async () => {
-                const idField = document.getElementById('visualize-id');
-                try {
-                    await navigator.clipboard.writeText(idField.value);
-                    alert('ID copiado al portapapeles');
-                } catch (err) {
-                    console.error('Error al copiar el ID:', err);
-                    alert('No se pudo copiar el ID');
-                }
-            });
-        });
-    </script>
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/locales/es.min.js"></script>
+  <script src="/frontend/scripts/calendario.js"></script>
 </body>
 </html>
