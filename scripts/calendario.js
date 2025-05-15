@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    titulo: eventName,
+                    title: eventName, // Cambia 'titulo' por 'title'
                     start: eventStart,
                     end: eventEnd,
                 }),
