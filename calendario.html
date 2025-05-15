@@ -14,29 +14,16 @@
   <!-- Archivos propios -->
   <link rel="stylesheet" href="/frontend/calendario.css" />
   <title>Calendario de Reservaciones</title>
-
-  <style>
-    /* Estilos para el botón Confirmar */
-    .confirm-button {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-    }
-  </style>
 </head>
 <body>
 
+
   <!-- Título -->
-  <div class="container position-relative">
+  <div class="container">
     <br>
     <h1 class="text-center">Calendario de Reservaciones</h1>
     <br>
     <h4 class="text-center">Consulta las fechas de los eventos reservados</h4>
-
-    <!-- Botón Confirmar en la esquina superior derecha -->
-    <button type="button" class="btn btn-success confirm-button" onclick="window.location.href='index.html';">
-      Confirmar
-    </button>
   </div>
 
   <!-- Botón para abrir el modal -->
@@ -52,7 +39,7 @@
   </div>
 
   <!-- Modal -->
-  <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
+<div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -81,7 +68,7 @@
             </div>
         </div>
     </div>
-  </div>
+</div>
 
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
